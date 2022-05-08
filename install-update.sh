@@ -2,6 +2,6 @@
 apt install unattended-upgrades cron -y
 systemctl enable cron
 systemctl start cron
-echo "45 21 * * * root apt-get update && apt-get -y -d upgrade" | tee -a /etc/crontab
-systemctl status cron
-cat /etc/crontab
+echo "50 19 * * 3 root /usr/bin/apt update -q -y" | tee -a /etc/crontab
+echo "0 20 * * 3 root /usr/bin/apt upgrade -q -y" | tee -a /etc/crontab
+systemctl restart cron
